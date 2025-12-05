@@ -146,7 +146,7 @@ export default function Personal() {
           <p className="text-zinc-600 dark:text-zinc-400">
             我是 <strong>Cysime</strong>，也可以叫我 <strong>Yukiakari / 雪明</strong> ，是个喜欢Hi-fi和流行乐、摄影、摆弄电子产品、玩电子游戏以及出门瞎转悠的普通上班族。 <br />
             曾经在非洲做土木工程，现在在广州从事医药行业的工作。 <br />
-            你可以访问我的博客以及摄影相册，或是在下面的社交平台上找到我。
+            你可以访问我的 <a href="https://blog.cysi.me" target="_blank" className="font-medium inline-flex items-center gap-0.5 text-zinc-900 dark:text-zinc-100 hover:underline">博客<ArrowIcon /></a> 以及 <a href="https://blog.cysi.me" target="_blank" className="font-medium inline-flex items-center gap-0.5 text-zinc-900 dark:text-zinc-100 hover:underline">摄影相册<ArrowIcon /></a>，或是在下面的社交平台上找到我。
           </p>
         </div>
       </motion.section>
