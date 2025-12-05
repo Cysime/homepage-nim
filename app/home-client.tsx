@@ -10,7 +10,7 @@ import {
   SOCIAL_LINKS,
 } from './data'
 import { getRSSFeed } from './actions'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 
 const VARIANTS_CONTAINER = {
   hidden: { opacity: 0 },
@@ -74,44 +74,58 @@ function MagneticSocialLink({
   )
 }
 
+function FeedItem({ item }: { item: { title: string; link: string; pubDate: string } }) {
+  const date = new Date(item.pubDate)
+  const formattedDate = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`
+
+  return (
+    <a
+      href={item.link}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group flex w-full items-center justify-between rounded-xl p-2 transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-800/50"
+    >
+      <div className="flex w-full items-center gap-3 overflow-hidden">
+        <span className="shrink-0 whitespace-nowrap text-sm text-zinc-500 dark:text-zinc-400 font-mono">
+          {formattedDate}
+        </span>
+        <span className="truncate text-zinc-900 dark:text-zinc-100 group-hover:underline decoration-zinc-400 underline-offset-4">
+          {item.title}
+        </span>
+      </div>
+    </a>
+  )
+}
+
 function Feed() {
   const [feed, setFeed] = useState<{ title: string; link: string; pubDate: string }[]>([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     async function fetchFeed() {
-      const data = await getRSSFeed()
-      setFeed(data)
+      try {
+        const data = await getRSSFeed()
+        setFeed(data)
+      } catch (error) {
+        console.error('Error fetching feed:', error)
+      } finally {
+        setLoading(false)
+      }
     }
     fetchFeed()
   }, [])
+
+  if (loading) {
+    return <p className="text-sm text-zinc-500 dark:text-zinc-400">正在获取文章列表...</p>
+  }
 
   if (feed.length === 0) return null
 
   return (
     <div className="flex flex-col space-y-1">
-      {feed.map((item) => {
-        const date = new Date(item.pubDate)
-        const formattedDate = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`
-
-        return (
-          <a
-            key={item.link}
-            href={item.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group flex w-full items-center justify-between rounded-xl p-2 transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-800/50"
-          >
-            <div className="flex items-center gap-3">
-              <span className="text-sm text-zinc-500 dark:text-zinc-400 font-mono">
-                {formattedDate}
-              </span>
-              <span className="text-zinc-900 dark:text-zinc-100 group-hover:underline decoration-zinc-400 underline-offset-4">
-                {item.title}
-              </span>
-            </div>
-          </a>
-        )
-      })}
+      {feed.map((item) => (
+        <FeedItem key={item.link} item={item} />
+      ))}
     </div>
   )
 }
