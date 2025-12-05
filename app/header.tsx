@@ -6,7 +6,10 @@ export function Header() {
   return (
     <header className="mb-8 flex items-center justify-between">
       <div>
-        <Link href="/" className="text-2xl font-bold text-black dark:text-white">
+        <Link
+          href="/"
+          className="text-2xl font-bold text-black dark:text-white"
+        >
           Cysime Moflu
         </Link>
         <TextEffect
@@ -19,11 +22,7 @@ export function Header() {
           aka. Yukiakari
         </TextEffect>
       </div>
-      <img
-        src="/avatar.png"
-        alt="Avatar"
-        className="h-12 w-12 rounded-full"
-      />
+      <img src="/avatar.png" alt="Avatar" className="h-12 w-12 rounded-full" />
     </header>
   )
 }
