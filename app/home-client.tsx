@@ -5,7 +5,6 @@ import { Magnetic } from '@/components/ui/magnetic'
 import Link from 'next/link'
 import { AnimatedBackground } from '@/components/ui/animated-background'
 import { PROJECTS, EMAIL, SOCIAL_LINKS } from './data'
-import { getRSSFeed } from './actions'
 import { useEffect, useState, useRef } from 'react'
 
 const VARIANTS_CONTAINER = {
@@ -103,7 +102,8 @@ function Feed() {
   useEffect(() => {
     async function fetchFeed() {
       try {
-        const data = await getRSSFeed()
+        const response = await fetch('/api/rss')
+        const data = await response.json()
         setFeed(data)
       } catch (error) {
         console.error('Error fetching feed:', error)
