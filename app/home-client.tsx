@@ -4,11 +4,7 @@ import { Spotlight } from '@/components/ui/spotlight'
 import { Magnetic } from '@/components/ui/magnetic'
 import Link from 'next/link'
 import { AnimatedBackground } from '@/components/ui/animated-background'
-import {
-  PROJECTS,
-  EMAIL,
-  SOCIAL_LINKS,
-} from './data'
+import { PROJECTS, EMAIL, SOCIAL_LINKS } from './data'
 import { getRSSFeed } from './actions'
 import { useEffect, useState, useRef } from 'react'
 
@@ -30,9 +26,6 @@ const VARIANTS_SECTION = {
 const TRANSITION_SECTION = {
   duration: 0.3,
 }
-
-
-
 
 function ArrowIcon() {
   return (
@@ -74,7 +67,11 @@ function MagneticSocialLink({
   )
 }
 
-function FeedItem({ item }: { item: { title: string; link: string; pubDate: string } }) {
+function FeedItem({
+  item,
+}: {
+  item: { title: string; link: string; pubDate: string }
+}) {
   const date = new Date(item.pubDate)
   const formattedDate = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`
 
@@ -86,10 +83,10 @@ function FeedItem({ item }: { item: { title: string; link: string; pubDate: stri
       className="group flex w-full items-center justify-between rounded-xl p-2 transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-800/50"
     >
       <div className="flex w-full items-center gap-3 overflow-hidden">
-        <span className="shrink-0 whitespace-nowrap text-sm text-zinc-500 dark:text-zinc-400 font-mono">
+        <span className="shrink-0 font-mono text-sm whitespace-nowrap text-zinc-500 dark:text-zinc-400">
           {formattedDate}
         </span>
-        <span className="truncate text-zinc-900 dark:text-zinc-100 group-hover:underline decoration-zinc-400 underline-offset-4">
+        <span className="truncate text-zinc-900 decoration-zinc-400 underline-offset-4 group-hover:underline dark:text-zinc-100">
           {item.title}
         </span>
       </div>
@@ -98,7 +95,9 @@ function FeedItem({ item }: { item: { title: string; link: string; pubDate: stri
 }
 
 function Feed() {
-  const [feed, setFeed] = useState<{ title: string; link: string; pubDate: string }[]>([])
+  const [feed, setFeed] = useState<
+    { title: string; link: string; pubDate: string }[]
+  >([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -116,7 +115,11 @@ function Feed() {
   }, [])
 
   if (loading) {
-    return <p className="text-sm text-zinc-500 dark:text-zinc-400">正在获取文章列表...</p>
+    return (
+      <p className="text-sm text-zinc-500 dark:text-zinc-400">
+        正在获取文章列表...
+      </p>
+    )
   }
 
   if (feed.length === 0) return null
@@ -144,9 +147,30 @@ export default function Personal() {
       >
         <div className="flex-1">
           <p className="text-zinc-600 dark:text-zinc-400">
-            我是 <strong>Cysime</strong>，也可以叫我 <strong>Yukiakari / 雪明</strong> ，是个喜欢Hi-fi和流行乐、摄影、摆弄电子产品、玩电子游戏以及出门瞎转悠的普通上班族。 <br />
+            我是 <strong>Cysime</strong>，也可以叫我{' '}
+            <strong>Yukiakari / 雪明</strong>{' '}
+            ，是个喜欢Hi-fi和流行乐、摄影、摆弄电子产品、玩电子游戏以及出门瞎转悠的普通上班族。{' '}
+            <br />
             曾经在非洲做土木工程，现在在广州从事医药行业的工作。 <br />
-            你可以访问我的 <a href="https://blog.cysi.me" target="_blank" className="font-medium inline-flex items-center gap-0.5 text-zinc-900 dark:text-zinc-100 hover:underline">博客<ArrowIcon /></a> 以及 <a href="https://blog.cysi.me" target="_blank" className="font-medium inline-flex items-center gap-0.5 text-zinc-900 dark:text-zinc-100 hover:underline">摄影相册<ArrowIcon /></a>，或是在下面的社交平台上找到我。
+            你可以访问我的{' '}
+            <a
+              href="https://blog.cysi.me"
+              target="_blank"
+              className="inline-flex items-center gap-0.5 font-medium text-zinc-900 hover:underline dark:text-zinc-100"
+            >
+              博客
+              <ArrowIcon />
+            </a>{' '}
+            以及{' '}
+            <a
+              href="https://blog.cysi.me"
+              target="_blank"
+              className="inline-flex items-center gap-0.5 font-medium text-zinc-900 hover:underline dark:text-zinc-100"
+            >
+              摄影相册
+              <ArrowIcon />
+            </a>
+            ，或是在下面的社交平台上找到我。
           </p>
         </div>
       </motion.section>
@@ -173,7 +197,7 @@ export default function Personal() {
                   target="_blank"
                 >
                   {project.name}
-                  <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 dark:bg-zinc-50 transition-all duration-200 group-hover:max-w-full"></span>
+                  <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 transition-all duration-200 group-hover:max-w-full dark:bg-zinc-50"></span>
                 </a>
                 <p className="text-base text-zinc-600 dark:text-zinc-400">
                   {project.description}
@@ -183,7 +207,6 @@ export default function Personal() {
           ))}
         </div>
       </motion.section>
-
 
       <motion.section
         variants={VARIANTS_SECTION}
@@ -203,7 +226,6 @@ export default function Personal() {
           </a>
         </div>
       </motion.section>
-
 
       <motion.section
         variants={VARIANTS_SECTION}

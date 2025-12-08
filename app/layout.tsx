@@ -14,14 +14,14 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL('https://nim-fawn.vercel.app/'),
   alternates: {
-    canonical: '/'
+    canonical: '/',
   },
   title: {
     default: 'Cysime Moflu - Home',
-    template: '%s | Cysime Moflu'
+    template: '%s | Cysime Moflu',
   },
   description: 'The homepage of Cysime Moflu',
-};
+}
 
 const geist = Geist({
   variable: '--font-geist',

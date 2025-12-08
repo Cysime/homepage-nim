@@ -14,8 +14,7 @@ type SocialLink = {
 export const PROJECTS: Project[] = [
   {
     name: '摄影集',
-    description:
-      '真材实料拍出来的摄影相册',
+    description: '真材实料拍出来的摄影相册',
     link: 'https://gallery.furry.pt/',
     image: '/gallery.jpg',
     id: 'project1',
