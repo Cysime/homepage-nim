@@ -158,7 +158,7 @@ export default function Personal() {
               target="_blank"
               className="inline-flex items-center gap-0.5 font-medium text-zinc-900 hover:underline dark:text-zinc-100"
             >
-              博客
+              📝博客
               <ArrowIcon />
             </a>{' '}
             以及{' '}
@@ -167,7 +167,7 @@ export default function Personal() {
               target="_blank"
               className="inline-flex items-center gap-0.5 font-medium text-zinc-900 hover:underline dark:text-zinc-100"
             >
-              摄影相册
+              📷摄影相册
               <ArrowIcon />
             </a>
             ，或是在下面的社交平台上找到我。
