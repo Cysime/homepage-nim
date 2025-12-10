@@ -163,7 +163,7 @@ export default function Personal() {
             </a>{' '}
             以及{' '}
             <a
-              href="https://blog.cysi.me"
+              href="https://gallery.furry.pt"
               target="_blank"
               className="inline-flex items-center gap-0.5 font-medium text-zinc-900 hover:underline dark:text-zinc-100"
             >
